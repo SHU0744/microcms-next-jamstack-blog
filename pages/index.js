@@ -5,24 +5,28 @@ import { Pagination } from "@/components/Pagination";
 export default function Home({ blog, category, tag, totalCount }) {
   console.log(totalCount);
   return (
-    <div className="flex">
-      <div>
-        <h5>カテゴリー一覧</h5>
-        <ul>
-          {category.map((category) => (
-            <li key={category.id}>
-              <Link href={`/category/${category.id}`}>{category.name}</Link>
-            </li>
-          ))}
-        </ul>
-        <h5>タグ一覧</h5>
-        <ul>
-          {tag.map((tag) => (
-            <li key={tag.id}>
-              <Link href={`/tag/${tag.id}`}>{tag.name}</Link>
-            </li>
-          ))}
-        </ul>
+    <div className="flex gap-x-4">
+      <div className="flex flex-col gap-y-4">
+        <div>
+          <h5 className="text-lg">カテゴリー一覧</h5>
+          <ul>
+            {category.map((category) => (
+              <li key={category.id}>
+                <Link href={`/category/${category.id}`}>{category.name}</Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <h5 className="text-lg">タグ一覧</h5>
+          <ul>
+            {tag.map((tag) => (
+              <li key={tag.id}>
+                <Link href={`/tag/${tag.id}`}>{tag.name}</Link>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
       <div>
         <ul className="flex flex-col gap-y-2">
