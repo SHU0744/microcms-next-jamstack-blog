@@ -9,7 +9,7 @@ export const Pagination = ({ totalCount }) => {
   };
 
   return (
-    <ul>
+    <ul className="flex gap-x-1">
       {range(1, Math.ceil(totalCount / PER_PAGE)).map((number, index) => (
         <li key={index}>
           <Link href={`/blog/page/${number}`}>{number}</Link>

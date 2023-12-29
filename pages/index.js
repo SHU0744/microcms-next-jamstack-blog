@@ -5,7 +5,7 @@ import { Pagination } from "@/components/Pagination";
 export default function Home({ blog, category, tag, totalCount }) {
   console.log(totalCount);
   return (
-    <div>
+    <div className="flex">
       <div>
         <h5>カテゴリー一覧</h5>
         <ul>
@@ -25,7 +25,7 @@ export default function Home({ blog, category, tag, totalCount }) {
         </ul>
       </div>
       <div>
-        <ul>
+        <ul className="flex flex-col gap-y-2">
           {blog.map((blog) => (
             <li key={blog.id}>
               <Link href={`/blog/${blog.id}`}>{blog.title}</Link>
