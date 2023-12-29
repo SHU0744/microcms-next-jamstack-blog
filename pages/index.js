@@ -1,7 +1,9 @@
 import Link from "next/link";
 import { client } from "../libs/client";
+import { Pagination } from "@/components/Pagination";
 
-export default function Home({ blog, category, tag }) {
+export default function Home({ blog, category, tag, totalCount }) {
+  console.log(totalCount);
   return (
     <div>
       <div>
@@ -22,19 +24,25 @@ export default function Home({ blog, category, tag }) {
           ))}
         </ul>
       </div>
-      <ul>
-        {blog.map((blog) => (
-          <li key={blog.id}>
-            <Link href={`/blog/${blog.id}`}>{blog.title}</Link>
-          </li>
-        ))}
-      </ul>
+      <div>
+        <ul>
+          {blog.map((blog) => (
+            <li key={blog.id}>
+              <Link href={`/blog/${blog.id}`}>{blog.title}</Link>
+            </li>
+          ))}
+        </ul>
+        <Pagination totalCount={totalCount} />
+      </div>
     </div>
   );
 }
 
 export const getStaticProps = async () => {
-  const data = await client.get({ endpoint: "blog" });
+  const data = await client.get({
+    endpoint: "blog",
+    queries: { offset: 0, limit: 5 },
+  });
   const categoryDate = await client.get({ endpoint: "categories" });
   const tagData = await client.get({ endpoint: "tags" });
 
@@ -43,6 +51,7 @@ export const getStaticProps = async () => {
       blog: data.contents,
       category: categoryDate.contents,
       tag: tagData.contents,
+      totalCount: data.totalCount,
     },
   };
 };
