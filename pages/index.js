@@ -12,7 +12,9 @@ export default function Home({ blog, category, tag, totalCount }) {
           <ul>
             {category.map((category) => (
               <li key={category.id}>
-                <Link href={`/category/${category.id}`}>{category.name}</Link>
+                <Link href={`/category/${category.id}`} className="underline">
+                  {category.name}
+                </Link>
               </li>
             ))}
           </ul>
@@ -22,20 +24,26 @@ export default function Home({ blog, category, tag, totalCount }) {
           <ul>
             {tag.map((tag) => (
               <li key={tag.id}>
-                <Link href={`/tag/${tag.id}`}>{tag.name}</Link>
+                <Link href={`/tag/${tag.id}`} className="underline">
+                  {tag.name}
+                </Link>
               </li>
             ))}
           </ul>
         </div>
         <div>
-          <Link href={"/search"}>検索ページ</Link>
+          <Link href={"/search"} className="underline">
+            検索ページ
+          </Link>
         </div>
       </div>
       <div>
         <ul className="flex flex-col gap-y-2">
           {blog.map((blog) => (
             <li key={blog.id}>
-              <Link href={`/blog/${blog.id}`}>{blog.title}</Link>
+              <Link href={`/blog/${blog.id}`} className="underline">
+                {blog.title}
+              </Link>
             </li>
           ))}
         </ul>

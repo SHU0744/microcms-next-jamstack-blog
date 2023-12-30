@@ -41,7 +41,9 @@ const Search = ({ blog }) => {
         <ul className="flex flex-col gap-y-2">
           {blog.map((blog) => (
             <li key={blog.id}>
-              <Link href={`/blog/${blog.id}`}>{blog.title}</Link>
+              <Link href={`/blog/${blog.id}`} className="underline">
+                {blog.title}
+              </Link>
             </li>
           ))}
         </ul>
