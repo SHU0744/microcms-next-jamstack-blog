@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { client } from "../libs/client";
 import { Pagination } from "@/components/Pagination";
+import { Blog } from "@/components/Blog";
 
 export default function Home({ blog, category, tag, totalCount }) {
   console.log(totalCount);
@@ -38,15 +39,7 @@ export default function Home({ blog, category, tag, totalCount }) {
         </div>
       </div>
       <div>
-        <ul className="flex flex-col gap-y-2">
-          {blog.map((blog) => (
-            <li key={blog.id}>
-              <Link href={`/blog/${blog.id}`} className="underline">
-                {blog.title}
-              </Link>
-            </li>
-          ))}
-        </ul>
+        <Blog blog={blog} />
         <Pagination totalCount={totalCount} />
       </div>
     </div>

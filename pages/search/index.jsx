@@ -1,4 +1,5 @@
 // import { client } from "@/libs/client";
+import { Blog } from "@/components/Blog";
 import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -52,15 +53,7 @@ const Search = () => {
       />
       {/* <button onClick={onClickBtn}>検索</button> */}
       <div className="mt-6">
-        <ul className="flex flex-col gap-y-2">
-          {blog.map((blog) => (
-            <li key={blog.id}>
-              <Link href={`/blog/${blog.id}`} className="underline">
-                {blog.title}
-              </Link>
-            </li>
-          ))}
-        </ul>
+        <Blog blog={blog} />
       </div>
     </>
   );

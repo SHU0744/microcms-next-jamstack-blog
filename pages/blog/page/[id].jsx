@@ -1,19 +1,11 @@
+import { Blog } from "@/components/Blog";
 import { Pagination } from "@/components/Pagination";
 import { client } from "@/libs/client";
-import Link from "next/link";
 
 export default function BlogPageId({ blog, totalCount }) {
   return (
     <div>
-      <ul>
-        {blog.map((blog) => (
-          <li key={blog.id}>
-            <Link href={`/blog/${blog.id}`} className="underline">
-              {blog.title}
-            </Link>
-          </li>
-        ))}
-      </ul>
+      <Blog blog={blog} />
       <Pagination totalCount={totalCount} />
     </div>
   );
