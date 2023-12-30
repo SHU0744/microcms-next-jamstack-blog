@@ -27,6 +27,9 @@ export default function Home({ blog, category, tag, totalCount }) {
             ))}
           </ul>
         </div>
+        <div>
+          <Link href={"/search"}>検索ページ</Link>
+        </div>
       </div>
       <div>
         <ul className="flex flex-col gap-y-2">
