@@ -1,6 +1,10 @@
 import Link from "next/link";
 
 export const Blog = ({ blog }) => {
+  if (blog.length === 0) {
+    return <div>ブログコンテンツがありません</div>;
+  }
+
   return (
     <ul>
       {blog.map((blog) => (

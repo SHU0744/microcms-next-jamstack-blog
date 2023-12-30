@@ -25,9 +25,5 @@ export const getStaticProps = async (context) => {
 };
 
 export default function CategoryId({ blog }) {
-  if (blog.length === 0) {
-    return <div>ブログコンテンツがありません</div>;
-  }
-
   return <Blog blog={blog} />;
 }

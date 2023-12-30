@@ -2,6 +2,8 @@ import Link from "next/link";
 import { client } from "../libs/client";
 import { Pagination } from "@/components/Pagination";
 import { Blog } from "@/components/Blog";
+import { CategoryList } from "@/components/CategoryList";
+import { TagList } from "@/components/TagList";
 
 export default function Home({ blog, category, tag, totalCount }) {
   console.log(totalCount);
@@ -10,27 +12,11 @@ export default function Home({ blog, category, tag, totalCount }) {
       <div className="flex flex-col gap-y-4">
         <div>
           <h5 className="text-lg">カテゴリー一覧</h5>
-          <ul>
-            {category.map((category) => (
-              <li key={category.id}>
-                <Link href={`/category/${category.id}`} className="underline">
-                  {category.name}
-                </Link>
-              </li>
-            ))}
-          </ul>
+          <CategoryList category={category} />
         </div>
         <div>
           <h5 className="text-lg">タグ一覧</h5>
-          <ul>
-            {tag.map((tag) => (
-              <li key={tag.id}>
-                <Link href={`/tag/${tag.id}`} className="underline">
-                  {tag.name}
-                </Link>
-              </li>
-            ))}
-          </ul>
+          <TagList tag={tag} />
         </div>
         <div>
           <Link href={"/search"} className="underline">
@@ -51,7 +37,6 @@ export const getStaticProps = async () => {
     endpoint: "blog",
     queries: { offset: 0, limit: 5 },
   });
-  // console.log(data);
   const categoryDate = await client.get({ endpoint: "categories" });
   const tagData = await client.get({ endpoint: "tags" });
 
