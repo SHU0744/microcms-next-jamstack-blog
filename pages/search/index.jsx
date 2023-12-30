@@ -43,7 +43,7 @@ const Search = () => {
   return (
     <>
       <h2 className="text-2xl">検索ページ</h2>
-      <p>本文の内容も検索対象です。</p>
+      <p>タイトルと本文の内容が検索対象です。</p>
       <input
         type="text"
         onChange={changeHandle}
