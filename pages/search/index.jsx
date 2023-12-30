@@ -1,7 +1,7 @@
 // import { client } from "@/libs/client";
 import axios from "axios";
 import Link from "next/link";
-// import { useRouter } from "next/router";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
 // export const getServerSideProps = async (ctx) => {
@@ -42,7 +42,8 @@ const Search = () => {
   // };
   return (
     <>
-      <p className="text-2xl">検索ページ</p>
+      <h2 className="text-2xl">検索ページ</h2>
+      <p>本文の内容も検索対象です。</p>
       <input
         type="text"
         onChange={changeHandle}
