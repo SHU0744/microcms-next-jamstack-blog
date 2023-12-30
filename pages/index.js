@@ -58,6 +58,7 @@ export const getStaticProps = async () => {
     endpoint: "blog",
     queries: { offset: 0, limit: 5 },
   });
+  // console.log(data);
   const categoryDate = await client.get({ endpoint: "categories" });
   const tagData = await client.get({ endpoint: "tags" });
 

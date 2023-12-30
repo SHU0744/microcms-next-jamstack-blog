@@ -1,32 +1,45 @@
-import { client } from "@/libs/client";
+// import { client } from "@/libs/client";
+import axios from "axios";
 import Link from "next/link";
-import { useRouter } from "next/router";
-import { useState } from "react";
+// import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 
-export const getServerSideProps = async (ctx) => {
-  const { query } = ctx;
-  const q = query.q;
-  const data = await client.get({ endpoint: "blog", queries: { q: q } });
-  return {
-    props: {
-      blog: data.contents,
-    },
-  };
-};
+// export const getServerSideProps = async (ctx) => {
+//   const { query } = ctx;
+//   const q = query.q;
+//   const data = await client.get({ endpoint: "blog", queries: { q: q } });
+//   return {
+//     props: {
+//       blog: data.contents,
+//     },
+//   };
+// };
 
-const Search = ({ blog }) => {
-  const router = useRouter();
+const Search = () => {
+  // const router = useRouter();
   const [state, setState] = useState("");
+  const [blog, setBlog] = useState([]);
+
+  useEffect(() => {
+    const getBlog = async () => {
+      const result = await axios
+        .get(`/api/blog/${state}`)
+        .then((res) => res.data);
+      setBlog(result.contents);
+    };
+    getBlog();
+  }, [state]);
+
   const changeHandle = (e) => {
     setState(e.target.value);
   };
-  const onClickBtn = () => {
-    router.push({
-      pathname: "/search",
-      query: { q: state },
-    });
-    setState("");
-  };
+  // const onClickBtn = () => {
+  //   router.push({
+  //     pathname: "/search",
+  //     query: { q: state },
+  //   });
+  //   setState("");
+  // };
   return (
     <>
       <p className="text-2xl">検索ページ</p>
@@ -36,7 +49,7 @@ const Search = ({ blog }) => {
         value={state}
         className="bg-gray-100"
       />
-      <button onClick={onClickBtn}>検索</button>
+      {/* <button onClick={onClickBtn}>検索</button> */}
       <div className="mt-6">
         <ul className="flex flex-col gap-y-2">
           {blog.map((blog) => (
